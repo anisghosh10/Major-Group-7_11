@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+	<link rel="stylesheet" href={{ url_for('static', filename='index.css') }}>
+  </head>
+  <body>
+<div class="login-box" >
+  <center><h1>Forex Rates Predictor</h1></center>
+  <div class="textbox">
+   <form action="{{ url_for('prediction')}}" method="post">
+    <input type="number" id="year" name="year" min="1981" max="2018" placeholder="Year (1981-2018)" required="required">
+  </div>
+
+
+
+<div class="select1">
+<select name="country1" id="country" required="required" >
+  <option disabled selected>Choose First Country.</option>
+  <option value=0>Canada  Can$</option>
+  <option value=1>China  ¥</option>
+  <option value=2>India  ₹</option>  
+  <option value=3>Japan  JP¥</option>
+  <option value=4>Switzerland   ₣</option>  
+  <option value=5>UK  £</option>
+  </div>
+</select>
+
+
+<div class="select2">
+
+
+
+<select name="country2" id="country" required="required">
+  <option disabled selected>Choose Second Country. </option>
+  <option value=0>Canada  Can$</option>
+  <option value=1>China  ¥</option>
+  <option value=2>India  ₹</option>  
+  <option value=3>Japan  JP¥</option>
+  <option value=4>Switzerland   ₣</option>  
+  <option value=5>UK  £</option>
+
+ 
+</select>
+ </div>
+
+  <div class="textbox">
+    <input type="number" name="amt" min="1" placeholder="Enter the Amount." required="required">
+  </div>
+
+  <button type="submit" class="btn rainbow rainbow-1" value="Predict">Predict</button>
+  </form>
+</div>
+ <div class="main-content-header">
+      
+    	<center><h2 class='text'><span class="colorchange">{{prediction_text}}</span></h2></center>
+      
+</div>
+
+ 
+<button id="button" class="btn rainbow rainbow-1">Click Here for Graphs</button>
+</div>
+<div id="iframeHolder" class="if" ></div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('#button').click(function(){ 
+        if(!$('#iframe').length) {
+                $('#iframeHolder').html('<iframe id="iframe"  class="if" src={{ url_for('static',filename='plots.html') }} frameborder="0" width="850" height="420"  style="position:absolute; top:60vw; left:50%; transform: translate(-50%,-50%);" ></iframe>');
+        }
+    });   
+});
+
+</script>
+
+
+
+  
+  
+  </body>
+</html>
